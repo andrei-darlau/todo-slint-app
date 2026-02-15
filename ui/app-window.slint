@@ -1,0 +1,64 @@
+import { Button, VerticalBox, HorizontalBox, LineEdit, ListView, CheckBox } from "std-widgets.slint";
+
+struct TodoItem {
+    title: string,
+    checked: bool,
+}
+
+export component AppWindow inherits Window {
+    width: 400px;
+    height: 600px;
+
+    in-out property <[TodoItem]> todo_model: [];
+
+    callback add_item(string);
+
+    callback clear_all();
+
+
+    VerticalBox {
+        HorizontalBox {
+            min-width: 300px;
+            max-width: 300px;
+            height: 5%;
+
+            input := LineEdit {
+                horizontal-alignment: center;
+                placeholder-text: "Add a new item";
+                font-size: 16px;
+            }
+
+            Button {
+                text: "+";
+                width: 30px;
+                height: 30px;
+
+                clicked => {
+                    root.add_item(input.text);
+                    input.text = "";
+                }
+            }
+
+        }
+
+        ListView {
+            for data in todo_model : HorizontalBox {
+                CheckBox {
+                   text: data.title;
+                }
+            }
+        }
+
+        HorizontalBox {
+            alignment: center;
+            height: 5%;
+            Button {
+                text: "clear list";
+                
+                clicked => {
+                    root.clear_all();
+                }
+            }
+        }
+    }
+}
