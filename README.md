@@ -14,12 +14,6 @@ A simple **TODO list desktop application** built with **Rust** and [Slint](https
 
 ---
 
-## Screenshots
-
-*(Optional: add a screenshot here if you like)*
-
----
-
 ## Project Structure
 
 - **`main.rs`** – Rust application logic:
@@ -90,7 +84,3 @@ cargo run
   - Removing individual items
 
 ---
-
-## License
-
-MIT License
